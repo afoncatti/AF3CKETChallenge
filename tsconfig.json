@@ -12,6 +12,7 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
+    "noImplicitThis": true,
     "noEmit": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
@@ -29,6 +30,11 @@
       "@types/node"
     ]
   },
+  "include": [
+    "types/**/*.d.ts",
+    "src/**/*",
+    "plugins"
+  ],
   "exclude": [
     "node_modules",
     ".nuxt",

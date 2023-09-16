@@ -5,6 +5,6 @@ module.exports = {
     'stylelint-config-recommended-vue'
   ],
   rules: {
-    'declaration-block-no-duplicate-properties': false
+    'declaration-block-no-duplicate-properties': null
   }
 }
