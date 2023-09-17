@@ -37,7 +37,14 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     // https://typed-vuex.roe.dev/
-    'nuxt-typed-vuex'
+    'nuxt-typed-vuex',
+    ['@nuxtjs/google-fonts',
+      {
+        families: {
+          'Space Grotesk': true
+        }
+      }
+    ]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

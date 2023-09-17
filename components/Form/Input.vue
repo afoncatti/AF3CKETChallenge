@@ -1,0 +1,56 @@
+<template>
+  <div class="relative">
+    <label
+      :for="label"
+      class="block mb-2 text-sm font-medium text-gray-900 absolute hidden"
+    >{{ label }}</label>
+    <span v-if="!value" class="placeholder">{{ computedPlaceholder }}</span>
+    <input
+      :id="label"
+      :value="value"
+      type="text"
+      class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      :placeholder="placeholder"
+      required
+      @input="$emit('input', $event.target.value)"
+    >
+  </div>
+</template>
+
+<script lang="ts">
+export default {
+  name: 'FormInput',
+  model: {
+    prop: 'value',
+    event: 'input'
+  },
+  props: {
+    value: {
+      type: String,
+      required: true
+    },
+    label: {
+      type: String,
+      required: true
+    },
+    placeholder: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    computedPlaceholder (): string {
+      return this.placeholder || this.label
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.placeholder {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+</style>
