@@ -21,7 +21,7 @@
       </div>
     </Header>
     <div class="container mx-auto">
-      <div class="flex flex-column flex-wrap justify-start">
+      <div class="flex flex-row flex-wrap justify-center">
         <CardEvent
           v-for="event in sortedEventList"
           :key="event.id"

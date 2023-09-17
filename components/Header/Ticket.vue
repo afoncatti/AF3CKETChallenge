@@ -6,7 +6,7 @@
     />
     <div class="image-container mx-auto rounded-2xl shadow-2xl overflow-hidden">
       <div
-        class="container image"
+        class="image"
         :style="{ backgroundImage: `url(${imageUrl})` }"
       />
     </div>
