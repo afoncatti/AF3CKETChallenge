@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-slate-100">
     <HeaderTicket
       :image-url="computedBackground"
     />
@@ -28,28 +28,38 @@
           </div>
         </div>
         <div ref="databoxContainer" class="databox-container relative">
-          <div ref="databox" class="databox h-fit rounded-xl overflow-hidden border-2 border-secondary fixed md:sticky">
-            <div class="bg-secondary">
-              <p class="text-white p-4">
-                Dados
+          <div ref="databox" class="bg-white databox h-fit rounded-xl overflow-hidden shadow-2xl fixed md:sticky p-4">
+            <div class="bg-white rounded-t-md">
+              <p class="text-secondary text-xl font-bold p-4">
+                Informações
               </p>
             </div>
-            <div class="bg-white info-line flex flex justify-start align-center p-4 pt-6">
-              <span class="w-8 h-6 mr-2 text-left text-primary i-lucide-calendar" /> <span class="info text-primary-grey">{{ formatDate(eventInfo.starts_at) }} - {{ formatDate(eventInfo.ends_at) }}</span>
+            <div class="bg-white info-line flex flex justify-start align-center p-1 pt-4">
+              <span class="w-8 h-5 mr-2 text-left text-primary i-lucide-calendar" /> <span class="info text-primary-grey">{{ formatDate(eventInfo.starts_at) }} - {{ formatDate(eventInfo.ends_at) }}</span>
             </div>
-            <div class="bg-white info-line flex flex justify-start align-center p-4">
-              <p class="w-8 h-6 mr-2 text-left text-primary i-lucide-ticket" /> <p class="info text-primary-grey">
+            <div class="bg-white info-line flex flex justify-start align-center p-1">
+              <p class="w-8 h-5 mr-2 text-left text-primary i-lucide-ticket" /> <p class="info text-primary-grey">
                 {{ formatPrice(eventInfo.price_range.minimum.amount) }}<span v-if="eventInfo.price_range.minimum.amount !== eventInfo.price_range.maximum.amount" class="info text-primary-grey"> - {{ formatPrice(eventInfo.price_range.maximum.amount) }}</span> {{ eventInfo.price_range.maximum.currency }}
               </p>
             </div>
-            <div class="bg-white info-line flex flex justify-start align-center p-4">
+            <div class="bg-white info-line flex flex justify-start align-center p-1">
               <p
-                class="w-8 h-6 mr-2 text-left text-primary"
+                class="w-8 h-5 mr-2 text-left text-primary"
                 :class="eventInfo.has_live ? 'i-lucide-video' : 'i-lucide-video-off'"
               /><p class="info text-primary-grey">
                 Evento {{ eventInfo.has_live ? 'com' : 'sem' }} live streaming
               </p>
             </div>
+            <nuxt-link
+              :to="`/checkout/${eventInfo.slug}`"
+              class="mt-4 md:mb-2 md:mx-2 grid"
+            >
+              <div
+                class="bg-primary md:rounded-lg text-white text-center p-4 cursor-pointer"
+              >
+                Comprar bilhete
+              </div>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -114,7 +124,7 @@ export default {
       const databox = this.$refs.databox as HTMLElement
       const databoxContainer = this.$refs.databoxContainer as HTMLElement
       if (databox) {
-        if (databoxContainer.offsetTop + databox.offsetHeight + 130 > window.scrollY + window.screen.availHeight) {
+        if (databoxContainer.offsetTop + databox.offsetHeight > window.scrollY + window.screen.availHeight) {
           databox.classList.add('fixed')
           databox.classList.remove('relative')
         } else {

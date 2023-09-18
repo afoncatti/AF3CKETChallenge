@@ -32,15 +32,17 @@ export default {
   left: -15%;
   width: 130%;
   height: 130%;
-  z-index: -1;
+  z-index: 0;
   background-size: 120%;
   background-position: center;
   clip-path: polygon(0% 0%, 100% 0%, 100% 60%, 0% 60%);
   filter: blur(40px);
 }
 .image-container {
+  position: relative;
   width: 760px;
   max-width: 90%;
+  z-index: 10;
   .image {
     padding-top: 50%;
     background-size: cover;

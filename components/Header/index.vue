@@ -1,5 +1,5 @@
 <template>
-  <header class="relative text-center p-8">
+  <header class="relative text-center py-8 px-2 sm:p-8">
     <div class="animated-header overflow-hidden">
       <VisualsAnimatedBackground />
     </div>
