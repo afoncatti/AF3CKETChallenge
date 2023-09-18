@@ -130,21 +130,23 @@ export default Vue.extend({
   },
   methods: {
     setObserver () {
-      const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5
+      if (this.$refs?.filterContainer) {
+        const options = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.5
+        }
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            this.isSticky = !entry.isIntersecting
+          })
+        }, options)
+        observer.observe(this.$refs.filterContainer as Element)
+      } else {
+        setTimeout(() => {
+          this.setObserver()
+        }, 100)
       }
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            this.isSticky = false
-          } else {
-            this.isSticky = true
-          }
-        })
-      }, options)
-      observer.observe(this.$refs.filterContainer as Element)
     }
   }
 })
